@@ -47,3 +47,29 @@ val = listItem1.nextElementSibling.previousElementSibling;
 console.log(val);
 
 // ****************************************************
+
+// Append a new list item to the current list with text saying Hello World
+
+// Create element
+const li = document.createElement("li");
+
+// Add class name, id or attribute
+li.className = "collection-item";
+li.id = "new-item";
+li.setAttribute("title", "item-title");
+
+// Append child
+li.appendChild(document.createTextNode("Hello World"));
+
+// The link
+const link = document.createElement("a");
+link.className = "delete-item secondary-content";
+link.innerHTML = '<i class="fa fa-remove"></i>';
+
+// Add link to li
+li.appendChild(link);
+
+// Add the li to the ul
+document.querySelector("ul").appendChild(li);
+
+console.log(li);
