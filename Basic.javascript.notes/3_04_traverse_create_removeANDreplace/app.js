@@ -73,3 +73,53 @@ li.appendChild(link);
 document.querySelector("ul").appendChild(li);
 
 console.log(li);
+
+// *******************************************************
+
+// REPLACE ELEMENT
+// replace h5 with h2 saying Task List
+
+// create new element
+let newTitle = document.createElement("h2");
+newTitle.id = "task-title";
+newTitle.appendChild(document.createTextNode("Task List"));
+
+// get old element
+let oldTitle = document.querySelector("h5");
+
+// replaceChild : new, old
+let parentDiv = document.querySelector(".card-action");
+parentDiv.replaceChild(newTitle, oldTitle);
+console.log(oldTitle);
+
+// REMOVE ELEMENT
+// remove the last element which says Hello World
+
+const lis = document.querySelectorAll("li");
+const ul = document.querySelector("ul");
+
+// call remove function in the child element list
+lis[lis.length - 1].remove();
+
+// removeChild (a node)
+ul.removeChild(lis[0]);
+
+// CLASSES
+
+const link1 = document.querySelector("li.collection-item").querySelector("a");
+val = link1.className; // a string
+val = link1.classList; // something like an array
+val = link1.classList[0];
+link1.classList.add("test");
+link1.classList.remove("test");
+val = link1;
+
+// ATTRIBUTES
+
+val = link1.getAttribute("href");
+link1.setAttribute("href", "http://google.com");
+link1.setAttribute("title", "test");
+link1.removeAttribute("title");
+val = link1.hasAttribute("title");
+
+console.log(val);
