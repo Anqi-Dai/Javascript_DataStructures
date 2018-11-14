@@ -41,20 +41,20 @@ const btn = document.querySelector(".clear-tasks");
 const heading = document.querySelector("h5");
 const card = document.querySelector(".card");
 
-runEvent = function(e) {
-  console.log(`Event Type: ${e.type}`);
+// runEvent = function(e) {
+//   console.log(`Event Type: ${e.type}`);
 
-  // make the heading show the mouse's pos inside that card
-  heading.textContent = `Mouse X: ${e.offsetX} Mouse Y: ${e.offsetY}`;
+//   // make the heading show the mouse's pos inside that card
+//   heading.textContent = `Mouse X: ${e.offsetX} Mouse Y: ${e.offsetY}`;
 
-  // make the background color of the body as the rgb value consists of the x and y pos of the mouse inside the card (the whole color needs to be a string whether it's a word a hexcode or rgb values).
-  document.body.style.backgroundColor = `rgba(
-    ${e.offsetX},
-    ${e.offsetY},
-    40,
-    0.9
-  )`;
-};
+//   // make the background color of the body as the rgb value consists of the x and y pos of the mouse inside the card (the whole color needs to be a string whether it's a word a hexcode or rgb values).
+//   // document.body.style.backgroundColor = `rgba(
+//   //   ${e.offsetX},
+//   //   ${e.offsetY},
+//   //   40,
+//   //   0.9
+//   // )`;
+// };
 
 // click
 // btn.addEventListener("click", runEvent);
@@ -73,4 +73,4 @@ runEvent = function(e) {
 // mouse out (when you move out from another element inside that area)
 // card.addEventListener("mouseout", runEvent);
 // mouse move (as long as your mouse move inside that area)
-card.addEventListener("mousemove", runEvent);
+// card.addEventListener("mousemove", runEvent);
