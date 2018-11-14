@@ -9,7 +9,18 @@ addEventListeners();
 
 // functions
 function addEventListeners() {
+  // Add task when submitting a task through form
   form.addEventListener("submit", addTask);
+
+  // Remove task when clicking the cross button
+  //    operate on the ul using event delegation
+  taskList.addEventListener("click", removeTask);
+
+  // Clear task when clicking clear button
+  clearBtn.addEventListener("click", clearTasks);
+
+  // Filter: show when there is matching input compared to the tasks, not show when there is not
+  filter.addEventListener("keyup", filterTask);
 }
 
 function addTask(e) {
@@ -33,4 +44,33 @@ function addTask(e) {
   taskInput.value = "";
 
   e.preventDefault();
+}
+
+function removeTask(e) {
+  if (e.target.parentElement.classList.contains("delete-item")) {
+    confirm("Are you sure?");
+    e.target.parentElement.parentElement.remove();
+  }
+}
+
+function clearTasks(e) {
+  // one naieve way to do it
+  taskList.innerHTML = "";
+  // faster way is to use while loop
+  while (taskList.firstChild) {
+    taskList.removeChild(taskList.firstChild);
+  }
+}
+
+function filterTask(e) {
+  const inputText = e.target.value.toLowerCase();
+  //console.log(inputText); (Good way to debug!)
+
+  document.querySelectorAll(".collection-item").forEach(function(task) {
+    if (task.firstChild.textContent.toLowerCase().indexOf(inputText) !== -1) {
+      task.style.display = "block";
+    } else {
+      task.style.display = "none";
+    }
+  });
 }
