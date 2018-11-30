@@ -33,6 +33,30 @@ UI.prototype.addBookToList = function(book) {
   bookList.appendChild(row);
 };
 
+// show alert of error and success
+UI.prototype.showAlert = function(msg, className) {
+  // create a div element
+  const div = document.createElement("div");
+
+  // add className
+  div.className = `alert ${className}`;
+
+  // create the text node inside the div to hold the msg
+  div.appendChild(document.createTextNode(msg));
+
+  // get the parent and the form to make sure where to insert the div
+  const form = document.getElementById("book-form");
+  const container = document.querySelector(".container");
+
+  // insert
+  container.insertBefore(div, form);
+
+  // make the alert disappear after 3 seconds
+  setTimeout(function() {
+    document.querySelector(".alert").remove();
+  }, 3000);
+};
+
 // Clear fields after submitting
 UI.prototype.clearFields = function() {
   document.getElementById("title").value = "";
@@ -40,7 +64,14 @@ UI.prototype.clearFields = function() {
   document.getElementById("isbn").value = "";
 };
 
-// Event listeners
+// delete book
+UI.prototype.deleteBook = function(target) {
+  if (target.className === "delete") {
+    target.parentElement.parentElement.remove();
+  }
+};
+
+// Event listener for adding a book
 document.getElementById("book-form").addEventListener("submit", function(e) {
   // Get the book information submitted from the form
   const title = document.getElementById("title").value,
@@ -53,11 +84,31 @@ document.getElementById("book-form").addEventListener("submit", function(e) {
   // Construct UI object
   const ui = new UI();
 
-  // Add book to the list
-  ui.addBookToList(book);
+  // alert in failing or succeeding in adding books
+  if (title === "" || author === "" || isbn === "") {
+    ui.showAlert("Please Add Required Information!", "error");
+  } else {
+    // Add book to the list
+    ui.addBookToList(book);
 
-  // Clear Fields after adding the book
-  ui.clearFields();
+    // show green alert that the book has been added
+    ui.showAlert("Book Successfully Added!", "success");
+
+    // Clear Fields after adding the book
+    ui.clearFields();
+  }
 
   e.preventDefault();
+});
+
+// event listener for deleting a book
+document.getElementById("book-list").addEventListener("click", function(e) {
+  // Construct UI object
+  const ui = new UI();
+
+  // calling the UI prototype deleteBook methods
+  ui.deleteBook(e.target);
+
+  // show alert message
+  ui.showAlert("Book Deleted!", "success");
 });
