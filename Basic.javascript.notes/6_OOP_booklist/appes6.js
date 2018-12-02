@@ -1,4 +1,5 @@
 // Implement the Book List usign ES6 (classes)
+//   and additional Local storage functionality
 
 // Book and UI constructor
 
@@ -68,7 +69,55 @@ class UI {
   }
 }
 
+// Add a Local Storage class
+class Store {
+  static getBooks() {
+    let books; // it's crucial to init the var here.
+
+    if (localStorage.getItem("books") === null) {
+      books = [];
+    } else {
+      books = JSON.parse(localStorage.getItem("books"));
+    }
+    return books;
+  }
+
+  static displayBooks() {
+    const books = Store.getBooks();
+
+    const ui = new UI();
+
+    books.forEach(function(book) {
+      ui.addBookToList(book);
+    });
+  }
+
+  static addBook(book) {
+    const books = Store.getBooks();
+
+    books.push(book);
+
+    localStorage.setItem("books", JSON.stringify(books));
+  }
+
+  static removeBook(isbn) {
+    // how to identify the book --- it's tricky, here use the isbn, which should be unique.
+    const books = Store.getBooks();
+
+    books.forEach(function(book, index) {
+      if (book.isbn === isbn) {
+        books.splice(index, 1);
+        // *IMPORTANT: you have to set the new array back to the LS*
+        localStorage.setItem("books", JSON.stringify(books));
+      }
+    });
+  }
+}
+
 // Event listeners
+// display the book list from the LS when the page is loaded
+document.addEventListener("DOMContentLoaded", Store.displayBooks);
+
 // for adding a book
 document.getElementById("book-form").addEventListener("submit", function(e) {
   const title = document.getElementById("title").value,
@@ -83,6 +132,10 @@ document.getElementById("book-form").addEventListener("submit", function(e) {
     ui.showAlert("Please Add Required Information!", "error");
   } else {
     ui.addBookToList(book);
+
+    // Add book to LS
+    Store.addBook(book);
+
     ui.showAlert("Book Successfully Added!", "success");
     ui.clearFields();
   }
@@ -94,6 +147,10 @@ document.getElementById("book-form").addEventListener("submit", function(e) {
 document.getElementById("book-list").addEventListener("click", function(e) {
   const ui = new UI();
   ui.deleteBook(e.target);
+
+  // remove from the LS by the isbn
+  Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
+
   ui.showAlert("Book Deleted!", "success");
   e.preventDefault();
 });
