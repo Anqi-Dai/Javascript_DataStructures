@@ -1,4 +1,5 @@
 // Using AJAX and callback functions (finding this conceptually hard)
+// To understand what is HTTP request and response, please refer to http://toolsqa.com/client-server/http-response/
 // writing in ES5 way
 // Resources: Json placeholder(https://jsonplaceholder.typicode.com/) selecting the routs for the different requests.
 
