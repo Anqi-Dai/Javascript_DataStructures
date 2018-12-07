@@ -9,9 +9,7 @@ document.getElementById("button3").addEventListener("click", getExternal);
 // fetch from a local text file
 function getText() {
   fetch("sample.txt")
-    .then(function(response) {
-      return response.text(); // this returns a promise
-    })
+    .then(response => response.text())
     .then(function(data) {
       console.log(data); // this finally returns the text in the file
     })
