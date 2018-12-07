@@ -10,21 +10,15 @@ document.getElementById("button3").addEventListener("click", getExternal);
 function getText() {
   fetch("sample.txt")
     .then(response => response.text())
-    .then(function(data) {
-      console.log(data); // this finally returns the text in the file
-    })
-    .catch(function(err) {
-      console.log(err);
-    });
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
 }
 
 // fetch from a local JSON file
 function getJSON() {
   fetch("posts.json")
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
+    .then(res => res.json())
+    .then(data => {
       // The returned data is already an array (parsed)
       let output = "";
       data.forEach(function(post) {
@@ -32,18 +26,14 @@ function getJSON() {
       });
       document.getElementById("output").innerHTML = output;
     })
-    .catch(function(err) {
-      console.log(err);
-    });
+    .catch(err => console.log(err));
 }
 
 // fetch from an external API (github the first 135 users)
 function getExternal() {
   fetch("https://api.github.com/users")
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
+    .then(res => res.json())
+    .then(data => {
       // The returned data is already an array (parsed)
       let output = "";
       data.forEach(function(user) {
@@ -51,7 +41,5 @@ function getExternal() {
       });
       document.getElementById("output").innerHTML = output;
     })
-    .catch(function(err) {
-      console.log(err);
-    });
+    .catch(err => console.log(err));
 }
