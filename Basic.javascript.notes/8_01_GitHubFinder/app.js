@@ -1,6 +1,9 @@
 // init a github instance
 const github = new GitHub();
 
+// init a UI class
+const ui = new UI();
+
 // event listener for the search box
 
 const searchUser = document.getElementById("searchUser");
@@ -14,7 +17,7 @@ searchUser.addEventListener("keyup", e => {
         // show alert
       } else {
         // add the profile to the UI (which will be done in the ui.js)
-        console.log(data);
+        ui.showProfile(data.profile);
       }
     });
   } else {
