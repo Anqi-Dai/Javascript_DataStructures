@@ -3,7 +3,19 @@
 // init weather object
 const weather = new Weather();
 
+// init UI object
+const ui = new UI();
+
+// so put the ui thing in the .then
 weather
   .getWeather()
-  .then(data => console.log(data))
+  .then(data => {
+    ui.displayWeather(
+      data.cityName,
+      data.temperature,
+      data.description,
+      data.windSpeed,
+      data.humidity
+    );
+  })
   .catch(err => console.log(err));
