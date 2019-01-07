@@ -1,18 +1,22 @@
 class Weather {
-  constructor(city, country) {
+  // only supports the weather in USA right now lol.
+  constructor(city) {
     this.city = city;
-    this.country = country;
     this.defaultCity = "Boston";
-    this.defaultCountry = "usa";
     this.apiKey = "323024f45b5e6987a1c836162449835d";
   }
 
   // metric system: its base units are the metre, kilogram, celsius etc.
-  async getWeather(city, country) {
+  async getWeather(city) {
+    if (city === "") {
+      this.city = this.defaultCity;
+    } else {
+      this.city = city;
+    }
     const responseWeather = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${this.defaultCity},${
-        this.defaultCountry
-      }&APPID=${this.apiKey}&units=metric`
+      `http://api.openweathermap.org/data/2.5/weather?q=${
+        this.city
+      },usa&APPID=${this.apiKey}&units=metric`
     );
 
     const responseData = await responseWeather.json();

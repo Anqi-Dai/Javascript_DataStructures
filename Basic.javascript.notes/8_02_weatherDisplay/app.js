@@ -6,16 +6,39 @@ const weather = new Weather();
 // init UI object
 const ui = new UI();
 
-// so put the ui thing in the .then
-weather
-  .getWeather()
-  .then(data => {
-    ui.displayWeather(
-      data.cityName,
-      data.temperature,
-      data.description,
-      data.windSpeed,
-      data.humidity
-    );
-  })
-  .catch(err => console.log(err));
+// let the dom load the boston weather by default(once the page loads)
+document.addEventListener("DOMContentLoaded", e => {
+  weather
+    .getWeather("Boston")
+    .then(data => {
+      ui.displayWeather(
+        data.cityName,
+        data.temperature,
+        data.description,
+        data.windSpeed,
+        data.humidity
+      );
+    })
+    .catch(err => console.log(err));
+});
+
+// event listner for clicking the submit button
+document.getElementById("searchBtn").addEventListener("click", e => {
+  const searchCity = document.getElementById("searchCity").value;
+
+  // so put the ui thing in the .then
+  weather
+    .getWeather(searchCity)
+    .then(data => {
+      ui.displayWeather(
+        data.cityName,
+        data.temperature,
+        data.description,
+        data.windSpeed,
+        data.humidity
+      );
+    })
+    .catch(err => console.log(err));
+
+  e.preventDefault();
+});
