@@ -2,6 +2,8 @@
 
 const ghibli = new Ghibli();
 
+const ui = new UI();
+
 // ghibli
 //   .getAllPeople()
 //   .then(data => console.log(data))
@@ -12,7 +14,10 @@ const ghibli = new Ghibli();
 //   .then(data => console.log(data))
 //   .catch(err => console.log(err));
 
+// show movie and its related information in a card and all the cards will lie in a flexbox
 ghibli
   .getAllFilms()
-  .then(data => console.log(data))
+  .then(movies => {
+    movies.forEach(movie => ui.showEachMovie(movie));
+  })
   .catch(err => console.log(err));
