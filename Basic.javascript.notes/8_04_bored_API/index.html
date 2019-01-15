@@ -8,17 +8,25 @@
       rel="stylesheet"
       href="https://bootswatch.com/4/superhero/bootstrap.min.css"
     />
+    <style>
+      .showcase-background {
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url('pandas_pexels.jpg'), no-repeat;
+        background-position: center;
+        background-size: cover;
+
+      }
+    </style>
 
     <title>Cure to Boredom</title>
   </head>
   <body>
-    <div class="jumbotron">
+    <div class="jumbotron showcase-background" >
       <h2 class="display-1 text-center">Feeling Bored?</h2>
-      <h1 class="display-3 text-center">Here are some ideas!</h1>
+      <h1 class="display-3 text-center"><em>Here are some ideas!</em></h1>
       <div class="searchArea">
-        <div class="container mb-4 mt-4 row" style="border: red solid 1px">
-          <form id="form-type" class="col-lg-6 form-group">
-            <label for="type">What type?</label>
+        <form class="container mb-4 mt-5 row text-center mx-auto" >
+          <div id="form-type" class="col-lg-6 form-group">
+            <label for="type"><h3>What type?</h3></label>
             <select name="type" id="type" size="4" class="form-control">
               <option value="recreational" selected>Recreational</option>
               <option value="education">Education</option>
@@ -30,10 +38,10 @@
               <option value="music">Music</option>
               <option value="busywork">Busywork</option>
             </select>
-          </form>
+          </div>
 
-          <form id="form-participants" class="col-lg-6 form-group">
-            <label for="participants">How many participants?</label>
+          <div id="form-participants" class="col-lg-6 form-group">
+            <label for="participants"><h3>How many participants?</h3></label>
             <select
               name="participants"
               id="participants"
@@ -49,9 +57,9 @@
           </form>
         </div>
       </div>
-      <p class="lead">
-        <a class="btn btn-primary btn-lg" href="#" role="button"
-          >Give me somethin' inspirational</a
+      <p class="lead mx-auto text-center">
+        <a class="btn btn-primary btn-lg " href="#" role="button"
+          >Gimme somethin' inspirational</a
         >
       </p>
     </div>
