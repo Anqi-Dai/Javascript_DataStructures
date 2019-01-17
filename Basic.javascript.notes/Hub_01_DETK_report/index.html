@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Report</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <span class="open-slide">
+        <a href="#" onclick="openSlideMenu()">
+          <svg width="30" height="30" class="hamburger-line">
+            <path d="M0,5 30,5" class="hamburger-line" />
+            <path d="M0,14 30,14" />
+            <path d="M0,23 30,23" />
+          </svg>
+        </a>
+      </span>
+    </nav>
+
+    <div id="side-menu" class="side-nav">
+      <div>
+        <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
+      </div>
+      <a href="#">all_mRNA_nonzero_raw_counts_trim.csv </a>
+      <a href="#">all_mRNA_nonzero_norm_counts_trim.csv </a>
+    </div>
+
+    <div id="main"><h1>The de_toolkit report</h1></div>
+
+    <script>
+      function openSlideMenu() {
+        document.getElementById("side-menu").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+      }
+
+      function closeSlideMenu() {
+        document.getElementById("side-menu").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+      }
+    </script>
+  </body>
+</html>
