@@ -29,7 +29,7 @@ body {
   color: #fff;
 }
 .navbar a:hover {
-  background-color: #c00;
+  /* background-color: #c00; */
   color: #fff;
 }
 
